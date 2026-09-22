@@ -22,10 +22,11 @@ export default function ArchiveSongCard({ song, index }) {
     }
 
     setLoading(true)
-    const query = encodeURIComponent(`${song.artist} ${song.title}`)
-    const res = await fetch(
-      `https://itunes.apple.com/search?term=${query}&entity=song&limit=1`
-    )
+    const url = song.trackId
+      ? `https://itunes.apple.com/lookup?id=${song.trackId}`
+      : `https://itunes.apple.com/search?term=${encodeURIComponent(`${song.artist} ${song.title}`)}&entity=song&limit=1`
+
+    const res = await fetch(url)
     const data = await res.json()
     setLoading(false)
 
@@ -51,7 +52,7 @@ export default function ArchiveSongCard({ song, index }) {
         {index + 1}
       </span>
 
-   
+
       {previewUrl && (
         <audio
           ref={audioRef}
@@ -60,7 +61,7 @@ export default function ArchiveSongCard({ song, index }) {
         />
       )}
 
-   
+
       <button
         onClick={handlePlay}
         className="w-10 h-10 rounded-full bg-white/10 hover:bg-white hover:text-black text-white flex items-center justify-center transition-all duration-200 shrink-0"

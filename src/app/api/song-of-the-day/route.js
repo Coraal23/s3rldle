@@ -3,10 +3,11 @@ import { getDailySong } from "@/lib/getDailySong"
 export async function GET() {
   const song = getDailySong()
 
-  const query = encodeURIComponent(`${song.artist} ${song.title}`)
-  const response = await fetch(
-    `https://itunes.apple.com/search?term=${query}&entity=song&limit=1`
-  )
+  const url = song.trackId
+    ? `https://itunes.apple.com/lookup?id=${song.trackId}`
+    : `https://itunes.apple.com/search?term=${encodeURIComponent(`${song.artist} ${song.title}`)}&entity=song&limit=1`
+
+  const response = await fetch(url)
   const data = await response.json()
 
   if (!data.results || data.results.length === 0) {
@@ -14,7 +15,6 @@ export async function GET() {
   }
 
   const track = data.results[0]
-
 
   return Response.json({
     previewUrl: track.previewUrl,
