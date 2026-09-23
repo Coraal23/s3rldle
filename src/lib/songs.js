@@ -11,7 +11,7 @@ const songs = [
   { artist: "S3RL", title: "And We Go" },
   { artist: "S3RL", title: "History Maker" , trackId: 6788048868},
   { artist: "S3RL", title: "Otaku Boy" },
-  { artist: "S3RL", title: "R4v3 B0y" },
+  { artist: "S3RL", title: "R4v3 B0y" }, // No Esta
   { artist: "S3RL", title: "Genre Police" },
   { artist: "S3RL", title: "Unicorn" },
   { artist: "S3RL", title: "Negative XP" },
@@ -19,6 +19,70 @@ const songs = [
   { artist: "S3RL", title: "Dopamine" },
   { artist: "S3RL", title: "Pretty Rave Girl" },
   { artist: "S3RL", title: "Sek-c-Raver" },
+  { artist: "S3RL", title: "Pika Girl" , trackId: 6768157422},
+  { artist: "S3RL", title: "MTC" },
+  { artist: "S3RL", title: "Bass Slut" },
+  { artist: "S3RL", title: "Raver Dimension" },
+  { artist: "S3RL", title: "Rainbow Girl" },
+  { artist: "S3RL", title: "Fantasy Land" }, // No esta
+  { artist: "S3RL", title: "Little Kandi Raver" },
+  { artist: "S3RL", title: "Friendzoned" },
+  { artist: "S3RL", title: "Keep On Raving Baby" },
+  { artist: "S3RL", title: "Bass and the Melody" },
+  { artist: "S3RL", title: "All That I Need" },
+  { artist: "S3RL", title: "Press Play Walk Away" },
+  { artist: "S3RL", title: "Happy Hardcore Tonight" },
+  { artist: "S3RL", title: "Neon Genesis" },
+  { artist: "S3RL", title: "Doki Doki" },
+  { artist: "S3RL", title: "Osaka Evolved" }, // No esta
+  { artist: "S3RL", title: "Dealer" },
+  { artist: "S3RL", title: "Break Em" },
+  { artist: "S3RL", title: "Shoulder Boulders" },
+  { artist: "S3RL", title: "Stay" }, // Mal pillada
+  { artist: "S3RL", title: "Weekend" },
+  { artist: "S3RL", title: "Into Overdrive" },
+  { artist: "S3RL", title: "Rave Forever" },
+  { artist: "S3RL", title: "We All Scream" },
+  { artist: "S3RL", title: "Here We Go" }, // Mal pillada
+  { artist: "S3RL", title: "Freakshow" },
+  { artist: "S3RL", title: "Boy Slut" },
+  { artist: "S3RL", title: "Stopping For Nothing" },
+  { artist: "S3RL", title: "Together" },
+  { artist: "S3RL", title: "Let the Music Take Control" },
+  { artist: "S3RL", title: "What We Do" },
+  { artist: "S3RL", title: "Neko Nation" },
+  { artist: "S3RL", title: "Make You Move" },
+  { artist: "S3RL", title: "It's Time 2 Roll" },
+  { artist: "S3RL", title: "MTC2" },
+  { artist: "S3RL", title: "Hentai" },
+  { artist: "S3RL", title: "Forever" },
+  { artist: "S3RL", title: "Click Bait" },
+  { artist: "S3RL", title: "Punch the Gas" },
+  { artist: "S3RL", title: "To Da Rave" },
+  { artist: "S3RL", title: "When I Die" },
+  { artist: "S3RL", title: "Space Invader" },
+  { artist: "S3RL", title: "Music Is My Life" }, // Mal pillada o no
+  { artist: "S3RL", title: "Addict" },
+  { artist: "S3RL", title: "Public Joint" },
+  { artist: "S3RL", title: "Transformer" }, // Ni cerca
+  { artist: "S3RL", title: "Tell Me What You Want" }, // Para nada
+  { artist: "S3RL", title: "When I'm With You" }, // Nada
+  { artist: "S3RL", title: "God Is A Girl" }, // A partir de aqui no se si son correctas
+  { artist: "S3RL", title: "DJ Whore" },
+  { artist: "S3RL", title: "Planet Rave" },
+  { artist: "S3RL", title: "Over the Rainbow" },
+  { artist: "S3RL", title: "I'll See You Again" },
+  { artist: "S3RL", title: "Kamehameha" },
+  { artist: "S3RL", title: "Selfie" },
+  { artist: "S3RL", title: "Fan Service" },
+  { artist: "S3RL", title: "Rave Generation" },
+  { artist: "S3RL", title: "Dance More" },
+  { artist: "S3RL", title: "The Bass & The Melody 2" },
+  { artist: "S3RL", title: "Nostalgic" },
+  { artist: "S3RL", title: "Ska-core" },
+  { artist: "S3RL", title: "Way Back When" },
+  { artist: "S3RL", title: "Zero Fucks Given" },
+  { artist: "S3RL", title: "Silicon Licker" }
 ]
 
 export default songs

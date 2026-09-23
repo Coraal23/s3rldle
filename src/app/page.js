@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className="w-full">
       {/* Header */}
-      <div className="flex flex-1 justify-between shadow-md shadow-white">
+      <div className="flex flex-1 justify-between">
         <div className="flex flex-1 justify-between items-center max-w-[80%] mx-auto">
           <Image
             className="cursor-pointer"

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 
-const LIMITS = [0.1, 2, 4, 7, 10, 13]
+const LIMITS = [0.1, 0.8, 1.5, 3, 6, 10]
 
 export default function AudioPlayer({ attempt }) {
     const audioRef = useRef(null)
