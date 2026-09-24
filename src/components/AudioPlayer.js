@@ -12,7 +12,7 @@ export default function AudioPlayer({ attempt }) {
 
     const limit = LIMITS[Math.min(attempt, LIMITS.length - 1)]
 
-    const TOTAL = 13
+    const TOTAL = 10
 
     const [volume, setVolume] = useState(0.01)
 
@@ -92,8 +92,8 @@ export default function AudioPlayer({ attempt }) {
                         className={`h-1 rounded-full transition-all duration-300 ${i < attempt
                             ? "w-32 bg-red-400"
                             : i === attempt
-                                ? "w-32 bg-white"
-                                : "w-16 bg-white/20"
+                                ? "w-64 bg-white"
+                                : "w-32 bg-white/20"
                             }`}
                     />
                 ))}
@@ -101,7 +101,7 @@ export default function AudioPlayer({ attempt }) {
             <button
                 onClick={togglePlay}
                 disabled={!previewUrl}
-                className="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center text-2xl 
+                className="w-20 h-20 rounded-full bg-white text-black flex items-center justify-center text-3xl 
                 hover:scale-105 transition-transform disabled:opacity-30"
             >
                 {isPlaying ? "⏸" : "▶"}
