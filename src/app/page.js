@@ -15,29 +15,40 @@ export default function Home() {
   const MAX_ATTEMPTS = 6
 
   const handleGuess = async (song) => {
-  const res = await fetch("/api/guess", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title: song.title }),
-  })
-  const { isCorrect } = await res.json()
+    const res = await fetch("/api/guess", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title: song.title }),
+    })
+    const { isCorrect } = await res.json()
 
-  const newGuesses = [...guesses, { title: song.title, correct: isCorrect }]
-  setGuesses(newGuesses)
+    const newGuesses = [...guesses, { title: song.title, correct: isCorrect }]
+    setGuesses(newGuesses)
 
-  if (isCorrect) {
-    setWon(true)
-  } else if (newGuesses.length >= MAX_ATTEMPTS) {
-    setLost(true)
-  } else {
-    setAttempt((a) => a + 1)
+    if (isCorrect) {
+      setWon(true)
+    } else if (newGuesses.length >= MAX_ATTEMPTS) {
+      setLost(true)
+    } else {
+      setAttempt((a) => a + 1)
+    }
   }
-}
+
+  const handleSkip = () => {
+    const newGuesses = [...guesses, { title: "Saltado", correct: false, skipped: true }]
+    setGuesses(newGuesses)
+
+    if (newGuesses.length >= MAX_ATTEMPTS) {
+      setLost(true)
+    } else {
+      setAttempt((a) => a + 1)
+    }
+  }
 
   return (
     <main className="w-full">
       {/* Header */}
-      <div className="flex flex-1 justify-between shadow-md shadow-white">
+      <div className="flex flex-1 justify-between">
         <div className="flex flex-1 justify-between items-center max-w-[80%] mx-auto">
           <Image
             className="cursor-pointer"
@@ -74,13 +85,14 @@ export default function Home() {
             {guesses.map((g, i) => (
               <div
                 key={i}
-                className={`px-4 py-3 rounded-xl border text-sm font-medium ${
-                  g.correct
+                className={`px-4 py-3 rounded-xl border text-sm font-medium ${g.correct
                     ? "border-green-500/50 bg-green-500/10 text-green-400"
-                    : "border-red-500/50 bg-red-500/10 text-red-400"
-                }`}
+                    : g.skipped
+                      ? "border-white/20 bg-white/5 text-white/40"
+                      : "border-red-500/50 bg-red-500/10 text-red-400"
+                  }`}
               >
-                {g.correct ? "✓" : "✗"} {g.title}
+                {g.correct ? "✓" : g.skipped ? "→" : "✗"} {g.title}
               </div>
             ))}
 
@@ -96,7 +108,7 @@ export default function Home() {
 
         {/* Input o mensaje de fin */}
         {!won && !lost ? (
-          <GuessInput onGuess={handleGuess} disabled={false} />
+          <GuessInput onGuess={handleGuess} onSkip={handleSkip} disabled={false} />
         ) : (
           <div className="text-center">
             {won && <p className="text-green-400 text-xl font-bold">¡Correcto!</p>}

@@ -77,6 +77,10 @@ const songs = [
   { artist: "S3RL", title: "Put Your phones up" },
   { artist: "S3RL", title: "Close My Eyes S3RL remix" },
 
+  // Every single day
+  // Superhero serl remix
+  // Heaven is a rave
+
 ]
 
 export default songs
