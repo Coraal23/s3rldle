@@ -1,10 +1,13 @@
 import songs from "./songs"
 
 export function getDayIndex() {
-  const startDate = new Date("2026-09-27")
-  const today = new Date()
-  const diffTime = today.setHours(0,0,0,0) - startDate.setHours(0,0,0,0)
-  return Math.floor(diffTime / (1000 * 60 * 60 * 24))
+  const startDate = new Date("2026-09-27T00:00:00+02:00")
+
+  const now = new Date()
+  const madridDate = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Madrid" }))
+  madridDate.setHours(0, 0, 0, 0)
+
+  return Math.floor((madridDate - startDate) / (1000 * 60 * 60 * 24))
 }
 
 export function getDailySong() {
