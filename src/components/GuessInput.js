@@ -8,10 +8,10 @@ export default function GuessInput({ onGuess, onSkip, disabled }) {
   const [showList, setShowList] = useState(false)
 
   const filtered = query.length > 0
-    ? songs.filter((s) =>
-        s.title.toLowerCase().includes(query.toLowerCase())
-      )
-    : []
+  ? songs
+      .filter((s) => s.title.toLowerCase().includes(query.toLowerCase()))
+      .slice(0, 8)
+  : []
 
   const handleSelect = (song) => {
     setQuery("")
@@ -25,28 +25,28 @@ export default function GuessInput({ onGuess, onSkip, disabled }) {
   }
 
   return (
-    <div className="flex gap-2">
-  <input
-    type="text"
-    value={query}
-    onChange={handleChange}
-    onFocus={() => query.length > 0 && setShowList(true)}
-    onBlur={() => setTimeout(() => setShowList(false), 150)}
-    disabled={disabled}
-    placeholder="Escribe el título de la canción..."
-    className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/30 outline-none focus:border-white/60 transition-colors duration-200 disabled:opacity-30"
-  />
-  <button
-    onClick={onSkip}
-    disabled={disabled}
-    className="px-5 py-3 rounded-xl border border-white/20 text-white/50 hover:border-white/60 hover:text-white transition-colors duration-200 disabled:opacity-30 shrink-0"
-  >
-    Saltar
-  </button>
+    <div className="flex gap-4 relative w-full max-w-[600px] mx-auto">
+      <input
+        type="text"
+        value={query}
+        onChange={handleChange}
+        onFocus={() => query.length > 0 && setShowList(true)}
+        onBlur={() => setTimeout(() => setShowList(false), 150)}
+        disabled={disabled}
+        placeholder="Escribe el título de la canción..."
+        className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/30 outline-none focus:border-white/60 transition-colors duration-200 disabled:opacity-30"
+      />
+      <button
+        onClick={onSkip}
+        disabled={disabled}
+        className="px-5 py-3 rounded-xl border border-white/20 text-white/50 hover:border-white/60 hover:text-white transition-colors duration-200 disabled:opacity-30 shrink-0"
+      >
+        Saltar
+      </button>
 
-  {/* Lista desplegable */}
+      {/* Lista desplegable */}
       {showList && filtered.length > 0 && (
-        <ul className="absolute z-10 w-full mt-2 rounded-xl border border-white/20 bg-black/80 backdrop-blur-sm overflow-hidden">
+        <ul className="absolute z-10 w-full bottom-full mb-2 rounded-xl border border-white/20 bg-black/80 backdrop-blur-sm overflow-hidden">
           {filtered.map((song, i) => (
             <li
               key={i}
@@ -62,10 +62,10 @@ export default function GuessInput({ onGuess, onSkip, disabled }) {
 
       {/* Sin resultados */}
       {showList && query.length > 0 && filtered.length === 0 && (
-        <div className="absolute z-10 w-full mt-2 rounded-xl border border-white/20 bg-black/80 backdrop-blur-sm px-4 py-3 text-white/40 text-sm">
+        <div className="absolute z-10 w-full bottom-full mb-2 rounded-xl border border-white/20 bg-black/80 backdrop-blur-sm px-4 py-3 text-white/40 text-sm">
           No se encontró ninguna canción
         </div>
       )}
-</div>
+    </div>
   )
 }

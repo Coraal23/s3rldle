@@ -1,13 +1,16 @@
 import songs from "./songs"
 
-export function getDailySong() {
-  const startDate = new Date("2025-01-01")
+export function getDayIndex() {
+  const startDate = new Date("2026-09-27")
   const today = new Date()
-  
   const diffTime = today.setHours(0,0,0,0) - startDate.setHours(0,0,0,0)
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
+  return Math.floor(diffTime / (1000 * 60 * 60 * 24))
+}
 
-  const index = diffDays % songs.length
+export function getDailySong() {
+  const index = getDayIndex()
 
-  return songs[index]
+  if (index < 0) return songs[0]
+
+  return songs[index % songs.length]
 }

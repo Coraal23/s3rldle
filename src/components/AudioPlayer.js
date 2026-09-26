@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 
 const LIMITS = [0.1, 0.8, 1.5, 3, 6, 10]
 
-export default function AudioPlayer({ attempt }) {
+export default function AudioPlayer({ attempt, apiUrl = "/api/song-of-the-day" }) {
     const audioRef = useRef(null)
     const [previewUrl, setPreviewUrl] = useState(null)
     const [isPlaying, setIsPlaying] = useState(false)
@@ -24,10 +24,10 @@ export default function AudioPlayer({ attempt }) {
 
 
     useEffect(() => {
-        fetch("/api/song-of-the-day")
+        fetch(apiUrl)
             .then((res) => res.json())
             .then((data) => setPreviewUrl(data.previewUrl))
-    }, [])
+    }, [apiUrl])
 
 
     useEffect(() => {
@@ -79,7 +79,7 @@ export default function AudioPlayer({ attempt }) {
     }
 
     return (
-        <div className="flex flex-col items-center gap-16 p-12">
+        <div className="flex flex-col items-center gap-16 p-6">
 
             {previewUrl && (
                 <audio ref={audioRef} src={previewUrl} preload="auto" />

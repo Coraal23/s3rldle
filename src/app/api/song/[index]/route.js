@@ -1,11 +1,14 @@
-import { getDailySong, getDayIndex } from "@/lib/getDailySong"
+import songs from "@/lib/songs"
 
-export async function GET() {
-  if (getDayIndex() < 0) {
-    return Response.json({ error: "El juego aún no ha empezado" }, { status: 404 })
+export async function GET(request, { params }) {
+  const { index: indexParam } = await params
+  const index = parseInt(indexParam)
+
+  if (isNaN(index) || index < 0 || index >= songs.length) {
+    return Response.json({ error: "Canción no encontrada" }, { status: 404 })
   }
 
-  const song = getDailySong()
+  const song = songs[index]
 
   const url = song.trackId
     ? `https://itunes.apple.com/lookup?id=${song.trackId}`
@@ -14,8 +17,8 @@ export async function GET() {
   const response = await fetch(url)
   const data = await response.json()
 
-  if (!data.results || data.results.length === 0) {
-    return Response.json({ error: "Canción no encontrada" }, { status: 404 })
+  if (!data.results?.length) {
+    return Response.json({ error: "No encontrada en iTunes" }, { status: 404 })
   }
 
   const track = data.results[0]
