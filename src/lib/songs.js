@@ -76,10 +76,16 @@ const songs = [
   { artist: "S3RL", title: "Zero Fucks Given" },
   { artist: "S3RL", title: "Put Your phones up" },
   { artist: "S3RL", title: "Close My Eyes S3RL remix" },
-
-  // Every single day
-  // Superhero serl remix
-  // Heaven is a rave
+  { artist: "S3RL", title: "Every single day" , trackId: 405581709},
+  { artist: "S3RL", title: "Superhero s3rl remix" },
+  { artist: "S3RL", title: "Now that ive found you" },
+  { artist: "S3RL", title: "Feel the flow" },
+  { artist: "S3RL", title: "Sky rocket" },
+  { artist: "S3RL", title: "FM-200" },
+  { artist: "S3RL", title: "It Went (feat.Jesskah)" , trackId: 414444052},
+  { artist: "S3RL", title: "Stick Together (A.B vs. Finnbarr) [S3RL Remix]" },
+  { artist: "S3RL", title: "Heart thief" , trackId: 6798350413},
+  { artist: "S3RL", title: "Airhead" },
 
 ]
 
