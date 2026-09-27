@@ -5,6 +5,7 @@ export function useGameState(storageKey) {
   const [attempt, setAttempt] = useState(0)
   const [won, setWon] = useState(false)
   const [lost, setLost] = useState(false)
+  const [correctSong, setCorrectSong] = useState(null)
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
@@ -16,6 +17,7 @@ export function useGameState(storageKey) {
         setAttempt(state.attempt || 0)
         setWon(state.won || false)
         setLost(state.lost || false)
+        setCorrectSong(state.correctSong || null)
       }
     } catch (e) {}
     setLoaded(true)
@@ -24,15 +26,18 @@ export function useGameState(storageKey) {
   useEffect(() => {
     if (!loaded) return
     try {
-      localStorage.setItem(storageKey, JSON.stringify({ guesses, attempt, won, lost }))
+      localStorage.setItem(storageKey, JSON.stringify({
+        guesses, attempt, won, lost, correctSong
+      }))
     } catch (e) {}
-  }, [guesses, attempt, won, lost, loaded, storageKey])
+  }, [guesses, attempt, won, lost, correctSong, loaded, storageKey])
 
   return {
     guesses, setGuesses,
     attempt, setAttempt,
     won, setWon,
     lost, setLost,
+    correctSong, setCorrectSong,
     loaded,
   }
 }

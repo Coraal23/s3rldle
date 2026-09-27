@@ -14,6 +14,7 @@ export default function Home() {
     attempt, setAttempt,
     won, setWon,
     lost, setLost,
+    correctSong, setCorrectSong,
     loaded,
   } = useGameState(`s3rldle_daily_${today}`)
 
@@ -44,7 +45,6 @@ export default function Home() {
     }
   }
 
-  const [correctSong, setCorrectSong] = useState(null)
 
   const handleSkip = async () => {
     const isLastAttempt = guesses.length + 1 >= MAX_ATTEMPTS

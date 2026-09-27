@@ -16,6 +16,7 @@ export default function ArchiveSong({ params }) {
     attempt, setAttempt,
     won, setWon,
     lost, setLost,
+    correctSong, setCorrectSong,
     loaded,
   } = useGameState(`s3rldle_archive_${songIndex}`)
 
@@ -49,7 +50,6 @@ export default function ArchiveSong({ params }) {
     }
   }
 
-  const [correctSong, setCorrectSong] = useState(null)
 
   const handleSkip = async () => {
     const isLastAttempt = guesses.length + 1 >= MAX_ATTEMPTS
