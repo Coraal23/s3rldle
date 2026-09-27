@@ -5,6 +5,7 @@ import Link from "next/link"
 import AudioPlayer from "@/components/AudioPlayer"
 import GuessInput from "@/components/GuessInput"
 import { useGameState } from "@/lib/useGameState"
+import { useState } from "react"
 
 export default function Home() {
   const today = new Date().toISOString().split("T")[0] // "2026-09-27"
@@ -22,9 +23,13 @@ export default function Home() {
     const res = await fetch("/api/guess", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title: song.title }),
+      body: JSON.stringify({
+        title: song.title,
+        attemptNumber: attempt,
+        maxAttempts: MAX_ATTEMPTS,
+      }),
     })
-    const { isCorrect } = await res.json()
+    const { isCorrect, correctTitle } = await res.json()
 
     const newGuesses = [...guesses, { title: song.title, correct: isCorrect }]
     setGuesses(newGuesses)
@@ -33,10 +38,13 @@ export default function Home() {
       setWon(true)
     } else if (newGuesses.length >= MAX_ATTEMPTS) {
       setLost(true)
+      if (correctTitle) setCorrectSong(correctTitle) // 👈 guardamos el título
     } else {
       setAttempt((a) => a + 1)
     }
   }
+
+  const [correctSong, setCorrectSong] = useState(null)
 
   const handleSkip = () => {
     const newGuesses = [...guesses, { title: "Saltado", correct: false, skipped: true }]
@@ -88,13 +96,12 @@ export default function Home() {
             {guesses.map((g, i) => (
               <div
                 key={i}
-                className={`px-4 py-2 rounded-xl border text-sm font-medium ${
-                  g.correct
-                    ? "border-green-500/50 bg-green-500/10 text-green-400"
-                    : g.skipped
+                className={`px-4 py-2 rounded-xl border text-sm font-medium ${g.correct
+                  ? "border-green-500/50 bg-green-500/10 text-green-400"
+                  : g.skipped
                     ? "border-white/20 bg-white/5 text-white/40"
                     : "border-red-500/50 bg-red-500/10 text-red-400"
-                }`}
+                  }`}
               >
                 {g.correct ? "✓" : g.skipped ? "→" : "✗"} {g.title}
               </div>
@@ -110,7 +117,16 @@ export default function Home() {
         ) : (
           <div className="text-center">
             {won && <p className="text-green-400 text-xl font-bold">¡Correcto!</p>}
-            {lost && <p className="text-red-400 text-xl font-bold">¡Se acabaron los intentos!</p>}
+            {lost && (
+              <div className="text-center flex flex-col gap-2">
+                <p className="text-red-400 text-xl font-bold">¡Se acabaron los intentos!</p>
+                {correctSong && (
+                  <p className="text-white/60 text-sm">
+                    La canción era <span className="text-white font-semibold">{correctSong}</span>
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>
