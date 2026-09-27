@@ -76,10 +76,18 @@ const songs = [
   { artist: "S3RL", title: "Zero Fucks Given" },
   { artist: "S3RL", title: "Put Your phones up" },
   { artist: "S3RL", title: "Close My Eyes S3RL remix" },
+  { artist: "S3RL", title: "Every single day" , trackId: 405581709},
+  { artist: "S3RL", title: "Superhero s3rl remix" },
+  { artist: "S3RL", title: "Now that ive found you" },
 
-  // Every single day
-  // Superhero serl remix
-  // Heaven is a rave
+  // Now that ive found you
+  // Feel the flow
+  // Sky rocket
+  // FM-200
+  // It Went
+  // Stick Together
+  // Heart thief
+  // Airhead
 
 ]
 

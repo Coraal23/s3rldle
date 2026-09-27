@@ -1,7 +1,7 @@
 import songs from "./songs"
 
 export function getDayIndex() {
-  const startDate = new Date("2026-09-27T00:00:00+02:00")
+  const startDate = new Date("2026-05-27T00:00:00+02:00")
 
   const now = new Date()
   const madridDate = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Madrid" }))
