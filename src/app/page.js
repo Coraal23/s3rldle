@@ -46,12 +46,30 @@ export default function Home() {
 
   const [correctSong, setCorrectSong] = useState(null)
 
-  const handleSkip = () => {
+  const handleSkip = async () => {
+    const isLastAttempt = guesses.length + 1 >= MAX_ATTEMPTS
+
+    let correctTitle = null
+    if (isLastAttempt) {
+      const res = await fetch("/api/guess", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: "",
+          attemptNumber: attempt,
+          maxAttempts: MAX_ATTEMPTS,
+        }),
+      })
+      const data = await res.json()
+      correctTitle = data.correctTitle
+    }
+
     const newGuesses = [...guesses, { title: "Saltado", correct: false, skipped: true }]
     setGuesses(newGuesses)
 
     if (newGuesses.length >= MAX_ATTEMPTS) {
       setLost(true)
+      if (correctTitle) setCorrectSong(correctTitle)
     } else {
       setAttempt((a) => a + 1)
     }
