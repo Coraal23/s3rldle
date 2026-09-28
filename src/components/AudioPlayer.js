@@ -4,15 +4,15 @@ import { useEffect, useRef, useState } from "react"
 
 const LIMITS = [0.1, 0.8, 1.5, 3, 6, 10]
 
-export default function AudioPlayer({ attempt, apiUrl = "/api/song-of-the-day" }) {
+export default function AudioPlayer({ attempt, apiUrl = "/api/song-of-the-day", gameOver = false }) {
     const audioRef = useRef(null)
     const [previewUrl, setPreviewUrl] = useState(null)
     const [isPlaying, setIsPlaying] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
 
-    const limit = LIMITS[Math.min(attempt, LIMITS.length - 1)]
-
     const TOTAL = 10
+
+    const limit = gameOver ? TOTAL : LIMITS[Math.min(attempt, LIMITS.length - 1)]
 
     const [volume, setVolume] = useState(0.01)
 

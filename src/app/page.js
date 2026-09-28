@@ -107,7 +107,10 @@ export default function Home() {
       </div>
 
       <div className="max-w-[80%] mx-auto mt-10 flex flex-col items-center gap-8">
-        <AudioPlayer attempt={attempt} />
+        <AudioPlayer
+          attempt={attempt}
+          gameOver={won || lost}
+        />
 
         {guesses.length > 0 && (
           <div className="w-full max-w-2xl flex flex-col gap-2">

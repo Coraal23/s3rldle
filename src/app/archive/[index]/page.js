@@ -96,7 +96,8 @@ export default function ArchiveSong({ params }) {
       <div className="flex flex-col items-center gap-8">
         <AudioPlayer
           attempt={attempt}
-          apiUrl={`/api/song/${songIndex}`}
+          apiUrl={`/api/song/${songIndex}`} 
+          gameOver={won || lost}
         />
 
         {guesses.length > 0 && (
