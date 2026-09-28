@@ -27,5 +27,6 @@ export async function GET(request, { params }) {
     previewUrl: track.previewUrl,
     artwork: track.artworkUrl100.replace("100x100", "400x400"),
     trackId: track.trackId,
+    spotifyId: song.spotifyId || null,
   })
 }

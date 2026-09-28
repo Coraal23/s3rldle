@@ -6,6 +6,7 @@ import AudioPlayer from "@/components/AudioPlayer"
 import GuessInput from "@/components/GuessInput"
 import { useGameState } from "@/lib/useGameState"
 import { useState } from "react"
+import Confetti from "@/components/Confetti"
 
 export default function Home() {
   const today = new Date().toISOString().split("T")[0] // "2026-09-27"
@@ -79,34 +80,37 @@ export default function Home() {
 
   return (
     <main className="w-full">
+
       <div className="flex flex-1 justify-between">
-        <div className="flex flex-1 justify-between items-center max-w-[80%] mx-auto">
+        <div className="flex flex-1 justify-between items-center max-w-[90%] md:max-w-[80%] mx-auto py-2">
           <Image
-            className="cursor-pointer"
             src="/s3rldlelogo.png"
             alt="s3rldle logo"
-            width={220}
-            height={80}
+            width={160}
+            height={57}
             priority
+            className="w-[120px] md:w-[160px] lg:w-[220px] cursor-pointer"
           />
           <Link
             href="/archive"
-            className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03]"
+            className="group relative inline-flex items-center gap-2 px-3 py-2 md:px-6 md:py-3 rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03]"
           >
             <span className="absolute inset-0 bg-white scale-x-0 origin-left transition-transform duration-300 ease-out group-hover:scale-x-100" />
-            <span className="relative z-10 flex items-center gap-2 text-white text-xl cursor-pointer transition-colors duration-300 group-hover:text-black">
+            <span className="relative z-10 flex items-center gap-2 text-white text-sm md:text-xl cursor-pointer transition-colors duration-300 group-hover:text-black">
               <span className="flex items-end gap-[2px] h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 <span className="w-[3px] bg-current animate-[eq1_0.6s_ease-in-out_infinite]" />
                 <span className="w-[3px] bg-current animate-[eq2_0.6s_ease-in-out_infinite]" />
                 <span className="w-[3px] bg-current animate-[eq3_0.6s_ease-in-out_infinite]" />
               </span>
-              Ver días anteriores
+              <span className="hidden md:inline">Ver días anteriores</span>
+              <span className="md:hidden !text-xl">Archivo</span>
             </span>
           </Link>
         </div>
       </div>
 
-      <div className="max-w-[80%] mx-auto mt-10 flex flex-col items-center gap-8">
+
+      <div className="max-w-[90%] md:max-w-[80%] mx-auto mt-6 md:mt-10 flex flex-col items-center gap-6 md:gap-8">
         <AudioPlayer
           attempt={attempt}
           gameOver={won || lost}
@@ -133,10 +137,16 @@ export default function Home() {
           </div>
         )}
 
+        {won && (
+          <>
+            <Confetti />
+          </>
+        )}
+
         {!won && !lost ? (
           <GuessInput onGuess={handleGuess} onSkip={handleSkip} disabled={false} />
         ) : (
-          <div className="text-center">
+          <div className="text-center !mb-8">
             {won && <p className="text-green-400 text-xl font-bold">¡Correcto!</p>}
             {lost && (
               <div className="text-center flex flex-col gap-2">

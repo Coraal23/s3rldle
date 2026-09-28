@@ -6,6 +6,7 @@ import AudioPlayer from "@/components/AudioPlayer"
 import GuessInput from "@/components/GuessInput"
 import { useGameState } from "@/lib/useGameState"
 import { useState } from "react"
+import Confetti from "@/components/Confetti"
 
 export default function ArchiveSong({ params }) {
   const { index } = use(params)
@@ -96,7 +97,7 @@ export default function ArchiveSong({ params }) {
       <div className="flex flex-col items-center gap-8">
         <AudioPlayer
           attempt={attempt}
-          apiUrl={`/api/song/${songIndex}`} 
+          apiUrl={`/api/song/${songIndex}`}
           gameOver={won || lost}
         />
 
@@ -119,6 +120,12 @@ export default function ArchiveSong({ params }) {
               <div key={i} className="px-4 py-3 rounded-xl border border-white/10 bg-white/5" />
             ))}
           </div>
+        )}
+
+        {won && (
+          <>
+            <Confetti />
+          </>
         )}
 
         {!won && !lost ? (
