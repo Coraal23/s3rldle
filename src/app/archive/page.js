@@ -22,7 +22,7 @@ export default function Archive() {
           try {
             const item = localStorage.getItem(`s3rldle_archive_${song.index}`)
             if (item) saved[song.index] = JSON.parse(item)
-          } catch (e) {}
+          } catch (e) { }
         })
         setStates(saved)
         setLoading(false)
@@ -60,17 +60,25 @@ export default function Archive() {
               </span>
 
               <div className="flex flex-col gap-1 flex-1">
-                <div className="h-3 w-32 bg-white/10 rounded-full" />
-                <div className="h-2 w-20 bg-white/5 rounded-full" />
+                {completed ? (
+                  <>
+                    <span className="text-white font-medium">{song.title}</span>
+                    <span className="text-white/40 text-sm">{song.artist}</span>
+                  </>
+                ) : (
+                  <>
+                    <div className="h-3 w-32 bg-white/10 rounded-full" />
+                    <div className="h-2 w-20 bg-white/5 rounded-full" />
+                  </>
+                )}
               </div>
 
               {/* Badge de estado */}
               {completed ? (
-                <span className={`text-xs px-2 py-1 rounded-full shrink-0 ${
-                  won
-                    ? "bg-green-500/20 text-green-400 border border-green-500/30"
-                    : "bg-red-500/20 text-red-400 border border-red-500/30"
-                }`}>
+                <span className={`text-xs px-2 py-1 rounded-full shrink-0 ${won
+                  ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                  : "bg-red-500/20 text-red-400 border border-red-500/30"
+                  }`}>
                   {won ? "✓ Acertado" : "✗ Fallado"}
                 </span>
               ) : (

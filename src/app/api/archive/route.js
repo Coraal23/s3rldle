@@ -10,9 +10,11 @@ export async function GET() {
 
   const pastSongs = songs
     .slice(0, currentIndex)
-    .map((_, i) => ({
+    .map((song, i) => ({
       index: i,
       day: i + 1,
+      title: song.title,  
+      artist: song.artist,
     }))
 
   return Response.json({ songs: pastSongs })
